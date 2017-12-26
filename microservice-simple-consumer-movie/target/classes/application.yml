@@ -1,0 +1,10 @@
+server:
+  port: 8010
+# spring boot actuator���ÿ�����info�ӿ�����ʾ����Ϣ
+info:
+  app:
+    name: microservice-simple-consumer-movie
+    encoding: UTF-8
+    java:
+      source: 1.8.0_151
+      target: 1.8.0_151

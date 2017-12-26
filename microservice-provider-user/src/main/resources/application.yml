@@ -1,0 +1,35 @@
+server:
+  port: 8080
+spring:
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    platform: h2
+    schema: classpath:schema.sql
+    data: classpath:data.sql
+  application:
+    name: microservice-provider-user # 注册到eureka server上的应用名
+logging: # 配置日志级别，让hibernate打印执行sql
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+# spring boot actuator配置可以在info接口中显示的信息
+info:
+  app:
+    name: @project.artifactId@
+    encoding: @project.build.sourceEncoding@
+    java:
+      source: @java.version@
+      target: @java.version@
+eureka:
+  client:
+    service-url:
+      default-zone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+  instance:
+    # 表示将自己的ip注册道eureka server，如果不配置则是注册hostname道eureka server
+    prefer-ip-address: true

@@ -1,0 +1,10 @@
+server:
+  port: 8010
+# spring boot actuator配置可以在info接口中显示的信息
+info:
+  app:
+    name: @project.artifactId@
+    encoding: @project.build.sourceEncoding@
+    java:
+      source: @java.version@
+      target: @java.version@

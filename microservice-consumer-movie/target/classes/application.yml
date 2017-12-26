@@ -1,0 +1,19 @@
+server:
+  port: 8010
+# spring boot actuator配置可以在info接口中显示的信息
+info:
+  app:
+    name: microservice-consumer-movie
+    encoding: UTF-8
+    java:
+      source: 1.8.0_151
+      target: 1.8.0_151
+spring:
+  application:
+    name: microservice-consumer-movie
+eureka:
+  client:
+    service-url:
+      default-zone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+  instance:
+    prefer-ip-address: true

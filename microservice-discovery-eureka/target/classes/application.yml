@@ -1,0 +1,11 @@
+server:
+  port: 8761
+eureka:
+  client:
+    # �Ƿ��Լ�ע���eureka server��
+    register-with-eureka: false
+    # �Ƿ��eureka server��ȡע����Ϣ����Ϊ�����ǵ��ڵ�server����������Ϊfalse
+    fetch-registry: false
+    service-url:
+      # ������eureka server�����ĵ�ַ
+      default-zone: http://localhost:8761/eureka/

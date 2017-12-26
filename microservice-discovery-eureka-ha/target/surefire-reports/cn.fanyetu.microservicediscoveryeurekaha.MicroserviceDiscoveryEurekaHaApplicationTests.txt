@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: cn.fanyetu.microservicediscoveryeurekaha.MicroserviceDiscoveryEurekaHaApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 16.248 sec - in cn.fanyetu.microservicediscoveryeurekaha.MicroserviceDiscoveryEurekaHaApplicationTests
