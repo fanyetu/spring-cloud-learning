@@ -2,5 +2,12 @@ server:
   port: 8761
 eureka:
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: false # 注册在注册中心的实例不被其他服务发现（eureka server同时也是eureka client）
+#    fetch-registry: false  # 不从eureka server上获取注册表信息
+    service-url:
+      defaultZone: http://localhost:8761/eureka # 配置多台注册中心实现高可用
+  server:
+    enable-self-preservation: false # 设置不启用server的自我保护模式(生产环境不要这样设置)
+spring:
+  application:
+    name: discovery-erueka # 配置应用的名称

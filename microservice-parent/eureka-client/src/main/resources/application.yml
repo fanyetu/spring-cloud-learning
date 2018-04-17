@@ -1,0 +1,11 @@
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka # 配置多个注册中心实现高可用
+  instance:
+    hostname: eurekaClient # host
+spring:
+  application:
+    name: eureka-client
+server:
+  port: 8080
