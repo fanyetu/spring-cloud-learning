@@ -13,6 +13,7 @@
         <module>discovery-eureka</module>
         <module>eureka-client</module>
         <module>product</module>
+        <module>order</module>
     </modules>
 
     <parent>

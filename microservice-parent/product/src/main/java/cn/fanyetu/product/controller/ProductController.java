@@ -4,6 +4,7 @@ import cn.fanyetu.product.dataobject.ProductCategory;
 import cn.fanyetu.product.dataobject.ProductInfo;
 import cn.fanyetu.product.service.CategoryService;
 import cn.fanyetu.product.service.ProductService;
+import cn.fanyetu.product.utils.ResultVOUtils;
 import cn.fanyetu.product.viewobject.ProductInfoVO;
 import cn.fanyetu.product.viewobject.ProductVO;
 import cn.fanyetu.product.viewobject.ResultVO;
@@ -60,11 +61,7 @@ public class ProductController {
             productVOList.add(productVO);
         }
 
-        ResultVO<List<ProductVO>> result = new ResultVO<>();
-        result.setData(productVOList);
-        result.setCode(0);
-        result.setMessage("success");
-        return result;
+        return ResultVOUtils.success(productVOList);
     }
 
 
