@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/fanyetu/config-repo.git # 配置远程git仓库的地址，还可以使用svn
+          username: fanyetu
+          password: qaz0987123
+          basedir: G:\myworkspace\java\idea15\spring-cloud-learning\microservice-parent\config\basedir # 配置本地git仓库的地址
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
