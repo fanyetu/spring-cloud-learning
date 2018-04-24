@@ -1,8 +1,8 @@
 package cn.fanyetu.order.controller;
 
+import cn.fanyetu.order.client.ProduceClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +23,9 @@ public class ClientController {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private ProduceClient produceClient;
 
     /**
      * 演示调用restTemplate的三种方式
@@ -48,5 +51,18 @@ public class ClientController {
         log.info("response = {}", response);
 
         return response;
+    }
+
+    /**
+     * 使用feign调用接口
+     *
+     * @return
+     */
+    @GetMapping("/productMsg")
+    public String productMsg() {
+        String msg = produceClient.productMsg();
+
+        log.info("response = {}", msg);
+        return msg;
     }
 }
