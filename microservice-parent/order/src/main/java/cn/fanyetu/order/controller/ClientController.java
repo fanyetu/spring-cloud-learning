@@ -1,6 +1,8 @@
 package cn.fanyetu.order.controller;
 
-import cn.fanyetu.order.client.ProduceClient;
+import cn.fanyetu.order.client.ProductClient;
+import cn.fanyetu.order.dataobject.CartDto;
+import cn.fanyetu.order.dataobject.ProductInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -8,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author zhanghaonan
@@ -25,7 +30,31 @@ public class ClientController {
     private RestTemplate restTemplate;
 
     @Autowired
-    private ProduceClient produceClient;
+    private ProductClient productClient;
+
+    /**
+     * 扣库存
+     *
+     * @return
+     */
+    @GetMapping("/productDecreaseStop")
+    public String productDecreaseStop() {
+        productClient.decreaseStop(Collections.singletonList(new CartDto("164103465734242707", 3)));
+        return "ok";
+    }
+
+
+    /**
+     * 获取商品列表
+     *
+     * @return
+     */
+    @GetMapping("/getProductList")
+    public String getProductList() {
+        List<ProductInfo> list = productClient.listForOrder(Collections.singletonList("164103465734242707"));
+        log.info("response={}", list);
+        return "ok";
+    }
 
     /**
      * 演示调用restTemplate的三种方式
@@ -60,7 +89,7 @@ public class ClientController {
      */
     @GetMapping("/productMsg")
     public String productMsg() {
-        String msg = produceClient.productMsg();
+        String msg = productClient.productMsg();
 
         log.info("response = {}", msg);
         return msg;

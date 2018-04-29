@@ -2,6 +2,7 @@ package cn.fanyetu.product.controller;
 
 import cn.fanyetu.product.dataobject.ProductCategory;
 import cn.fanyetu.product.dataobject.ProductInfo;
+import cn.fanyetu.product.dto.CartDto;
 import cn.fanyetu.product.service.CategoryService;
 import cn.fanyetu.product.service.ProductService;
 import cn.fanyetu.product.utils.ResultVOUtils;
@@ -10,9 +11,7 @@ import cn.fanyetu.product.viewobject.ProductVO;
 import cn.fanyetu.product.viewobject.ResultVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +30,26 @@ public class ProductController {
 
     @Autowired
     private CategoryService categoryService;
+
+    /**
+     * 扣库存
+     *
+     * @param cartDtoList
+     */
+    @PostMapping("/decreaseStop")
+    public void decreaseStop(@RequestBody List<CartDto> cartDtoList) {
+        productService.decreaseStop(cartDtoList);
+    }
+
+    /**
+     * 获取商品列表（给订单服务用s）
+     *
+     * @return
+     */
+    @PostMapping("/listForOrder")
+    public List<ProductInfo> listForOrder(@RequestBody List<String> productIdList) {
+        return productService.findList(productIdList);
+    }
 
     @GetMapping("/list")
     public ResultVO<List<ProductVO>> list() {

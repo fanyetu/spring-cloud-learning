@@ -13,8 +13,17 @@ public interface ProductInfoRepository extends JpaRepository<ProductInfo, String
 
     /**
      * 通过商品状态查询商品列表
+     *
      * @param productStatus
      * @return
      */
     List<ProductInfo> findByProductStatus(Integer productStatus);
+
+    /**
+     * 通过id列表获取商品信息列表
+     *
+     * @param productIdList
+     * @return
+     */
+    List<ProductInfo> findByProductIdIn(List<String> productIdList);
 }
