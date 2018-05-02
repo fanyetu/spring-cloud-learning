@@ -22,4 +22,12 @@ public class RabbitMqTest extends OrderApplicationTest {
         // 发送消息
         rabbitTemplate.convertAndSend("myQueue", "now: " + new Date());
     }
+
+    /**
+     * 向电脑提供商服务发送消息，通过routerKey进行路由
+     */
+    @Test
+    public void test2(){
+        rabbitTemplate.convertAndSend("orderExchange", "computer", "now: " + new Date());
+    }
 }
