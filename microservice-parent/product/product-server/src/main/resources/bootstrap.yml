@@ -1,0 +1,28 @@
+#spring:
+#  application:
+#    name: product
+#  datasource:
+#    username: root
+#    password: 111111
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/spring_cloud?characterEncoding=utf-8&useSSL=false
+#  jpa:
+#    show-sql: true # 打开jpa的sql显示
+#eureka:
+#  client:
+#    service-url:
+#      default-zone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: product
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: CONFIG # 通过config server获取配置
+      profile: dev
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka # eureka 的地址需要配置在bootstrap中

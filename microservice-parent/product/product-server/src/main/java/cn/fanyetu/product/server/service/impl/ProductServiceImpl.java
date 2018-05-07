@@ -8,6 +8,8 @@ import cn.fanyetu.product.server.enums.ResultEnum;
 import cn.fanyetu.product.server.exception.ProductException;
 import cn.fanyetu.product.server.repository.ProductInfoRepository;
 import cn.fanyetu.product.server.service.ProductService;
+import cn.fanyetu.product.server.utils.JsonUtils;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductInfoRepository productInfoRepository;
+
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
     @Override
     @Transactional(rollbackFor = ProductException.class)
@@ -48,6 +53,11 @@ public class ProductServiceImpl implements ProductService {
             // 完成扣库存操作
             productInfo.setProductStock(result);
             productInfoRepository.save(productInfo);
+
+            // 发送mq消息
+            ProductInfoOutput productInfoOutput = new ProductInfoOutput();
+            BeanUtils.copyProperties(productInfo, productInfoOutput);
+            amqpTemplate.convertAndSend("productInfo", JsonUtils.toJson(productInfoOutput));
         }
     }
 
