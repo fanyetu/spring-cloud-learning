@@ -1,6 +1,7 @@
 package cn.fanyetu.order.server.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -12,6 +13,22 @@ import java.io.IOException;
 public class JsonUtils {
 
     private static ObjectMapper objectMapper = new ObjectMapper();
+
+    /**
+     * 字符串转对象
+     * @param json
+     * @param typeReference
+     * @param <T>
+     * @return
+     */
+    public static <T> T fromJson(String json, TypeReference<T> typeReference){
+        try {
+            return objectMapper.readValue(json, typeReference);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
     /**

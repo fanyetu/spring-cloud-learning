@@ -10,7 +10,7 @@ spring:
           password: qaz0987123
           basedir: G:\myworkspace\java\idea15\spring-cloud-learning\microservice-parent\config\basedir # 配置本地git仓库的地址
   rabbitmq:
-    host: 192.168.230.128
+    host: 192.168.200.128
     port: 5672
     username: guest
     password: guest

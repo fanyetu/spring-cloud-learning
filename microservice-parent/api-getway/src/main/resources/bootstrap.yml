@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: api-getway
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: CONFIG # 通过config server获取配置
+      profile: dev
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
+zuul:
+  routes:
+#    myProduct: # 自定义路由路径的转发
+#      path: /myProduct/**
+#      serviceId: product
+    product: /myProduct/** # 自定义路由路径转发的简洁配置
+  ignored-patterns: # 配置排除路由的地址
+    - /**/server/** # - 符号是配置set用的，这里可以使用-配置多个
