@@ -13,9 +13,11 @@ eureka:
       default-zone: http://localhost:8761/eureka
 zuul:
   routes:
-#    myProduct: # 自定义路由路径的转发
-#      path: /myProduct/**
-#      serviceId: product
-    product: /myProduct/** # 自定义路由路径转发的简洁配置
+    myProduct: # 自定义路由路径的转发
+      path: /myProduct/**
+      serviceId: product
+      # 将敏感头设置为空，实现cookie的传递(默认的敏感头有："Cookie", "Set-Cookie", "Authorization")
+      sensitiveHeaders:
+#    product: /myProduct/** # 自定义路由路径转发的简洁配置
   ignored-patterns: # 配置排除路由的地址
     - /**/server/** # - 符号是配置set用的，这里可以使用-配置多个
