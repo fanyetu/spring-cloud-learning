@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: user
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: CONFIG # 通过config server获取配置
+      profile: dev
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka # eureka 的地址需要配置在bootstrap中

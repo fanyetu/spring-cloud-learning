@@ -5,12 +5,13 @@ import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * Pre过滤器
+ *
  * @author zhanghaonan
  * @date 2018/5/9
  */
@@ -59,8 +60,8 @@ public class TokenFilter extends ZuulFilter {
         // 获取token并验证
         String token = request.getParameter("token");
         if (StringUtils.isBlank(token)){
-            currentContext.setSendZuulResponse(false); // 设置zuul不通过
-            currentContext.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value()); // 设置状态码为权限不足
+//            currentContext.setSendZuulResponse(false); // 设置zuul不通过
+//            currentContext.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value()); // 设置状态码为权限不足
         }
 
         return null;
