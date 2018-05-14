@@ -9,5 +9,7 @@ import cn.fanyetu.order.server.dto.OrderDTO;
  */
 public interface OrderService {
 
+    OrderDTO finish(String orderId);
+
     OrderDTO create(OrderDTO orderDTO);
 }

@@ -1,4 +1,4 @@
-package cn.fanyetu.user.server.utils;
+package cn.fanyetu.apigetway.utils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

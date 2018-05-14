@@ -13,6 +13,7 @@ public class ResultVOUtils {
         ResultVO<T> result = new ResultVO<>();
         result.setCode(0);
         result.setMessage("success");
+        result.setData(data);
         return result;
     }
 }

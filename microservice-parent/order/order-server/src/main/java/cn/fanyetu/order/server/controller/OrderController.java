@@ -5,10 +5,7 @@ import cn.fanyetu.order.server.service.OrderService;
 import cn.fanyetu.order.server.utils.ResultVOUtils;
 import cn.fanyetu.order.server.viewobject.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +20,16 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+
+    /**
+     * 完结订单
+     * @param orderId
+     * @return
+     */
+    @PostMapping("/finish")
+    public ResultVO<OrderDTO> finish(@RequestParam String orderId){
+        return ResultVOUtils.success(orderService.finish(orderId));
+    }
 
     /**
      * 创建订单
